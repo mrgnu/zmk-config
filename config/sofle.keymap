@@ -24,10 +24,6 @@
     cs-gpios = <&pro_micro 4 GPIO_ACTIVE_HIGH>;
 };
 
-&led_strip {
-    chain-length = <36>;
-};
-
 #define BASE 0
 #define LOWER 1
 #define RAISE 2
