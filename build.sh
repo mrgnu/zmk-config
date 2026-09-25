@@ -16,6 +16,7 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 CONFIG_DIR="${SCRIPT_DIR}/config"
+BOARDS_DIR="${SCRIPT_DIR}/boards"
 BUILD_YAML="${SCRIPT_DIR}/build.yaml"
 OUTPUT_DIR="${SCRIPT_DIR}/firmware"
 DOCKER_IMAGE="zmkfirmware/zmk-build-arm:3.5"
@@ -77,6 +78,7 @@ build_entry() {
         cmake_extra+=" $cmake_args"
     fi
     cmake_extra+=" -DZMK_CONFIG=/workspace/config"
+    cmake_extra+=" -DBOARD_ROOT=/workspace"
 
     if [[ -n "$cmake_extra" ]]; then
         west_args+=" -- $cmake_extra"
@@ -85,6 +87,7 @@ build_entry() {
     if docker run --rm \
         -v "$DOCKER_VOLUME":/workspace \
         -v "$CONFIG_DIR":/workspace/config:ro \
+        -v "$BOARDS_DIR":/workspace/boards:ro \
         -v "$OUTPUT_DIR":/workspace/output \
         -e ZEPHYR_BASE=/workspace/zephyr \
         -w /workspace \
