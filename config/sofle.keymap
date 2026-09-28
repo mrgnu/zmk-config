@@ -10,12 +10,12 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
 
-#ifndef DONGLE_BUILD
-
 // Encoders
 &sensors { triggers-per-rotation = <20>; };
 &left_encoder { steps = <80>; };
 &right_encoder { steps = <80>; };
+
+#ifndef DONGLE_BUILD
 
 // MechBoards Sofle MX: nice!view CS is wired to pro_micro pin 4 (P0.22),
 // not pin 1 as the nice_view_adapter default assumes.
