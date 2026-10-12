@@ -83,24 +83,6 @@
         };
     };
 
-    macros {
-        m_cut: m_cut {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_press &kp LSHFT>, <&macro_tap &kp DEL>, <&macro_release &kp LSHFT>;
-        };
-        m_copy: m_copy {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_press &kp LCTRL>, <&macro_tap &kp INS>, <&macro_release &kp LCTRL>;
-        };
-        m_paste: m_paste {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_press &kp LSHFT>, <&macro_tap &kp INS>, <&macro_release &kp LSHFT>;
-        };
-    };
-
     scroll_encoder: scroll_encoder {
         compatible = "zmk,behavior-sensor-rotate";
         #sensor-binding-cells = <0>;
@@ -159,11 +141,11 @@
 // |       | UNDO | CUT  | COPY  | PASTE |      |      |  |      |      |      |       |      |       |       |
 //                |      |       |       |      |      |  |      |      |      |       |      |
             bindings = <
-&bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4                  &trans    &trans    &trans   &trans    &trans  &trans
-&trans     &kp INS      &kp PSCRN    &kp K_CMENU  &trans       &trans                        &kp PG_UP &kp HOME  &kp UP   &kp END   &kp N0  &trans
-&trans     &kp LALT     &kp LCTRL    &kp LSHFT    &trans       &kp CLCK                      &kp PG_DN &kp LEFT  &kp DOWN &kp RIGHT &kp DEL &kp BSPC
-&trans     &kp K_UNDO   &m_cut       &m_copy      &m_paste     &trans        &trans  &trans  &trans    &trans    &trans   &trans    &trans  &trans
-                        &trans       &trans       &trans       &trans        &trans  &trans  &trans    &trans    &trans   &trans
+&bt BT_CLR &bt BT_SEL 0   &bt BT_SEL 1 &bt BT_SEL 2   &bt BT_SEL 3   &bt BT_SEL 4                  &trans    &trans    &trans   &trans    &trans  &trans
+&trans     &kp INS        &kp PSCRN    &kp K_CMENU    &trans         &trans                        &kp PG_UP &kp HOME  &kp UP   &kp END   &kp N0  &trans
+&trans     &kp LALT       &kp LCTRL    &kp LSHFT      &trans         &kp CLCK                      &kp PG_DN &kp LEFT  &kp DOWN &kp RIGHT &kp DEL &kp BSPC
+&trans     &kp C_AC_UNDO  &kp C_AC_CUT &kp C_AC_COPY  &kp C_AC_PASTE &trans        &trans  &trans  &trans    &trans    &trans   &trans    &trans  &trans
+                          &trans       &trans         &trans         &trans        &trans  &trans  &trans    &trans    &trans   &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &scroll_encoder>;
